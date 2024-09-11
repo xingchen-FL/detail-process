@@ -5,10 +5,11 @@ import com.demo.detailprocess.common.ResponseVO;
 import com.demo.detailprocess.service.ProcessAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("process")
+@RequestMapping("/process")
 @RestController
 public class ProcessAccessController {
     @Autowired
@@ -16,8 +17,7 @@ public class ProcessAccessController {
 
 
     @PostMapping("/createProcess")
-    public ResponseVO createProcess(JSONObject createObj) {
-        String process = processAccessService.createProcess(createObj);
-        return ResponseVO.success(process);
+    public ResponseVO createProcess(@RequestBody JSONObject createObj) {
+        return processAccessService.createProcess(createObj);
     }
 }
